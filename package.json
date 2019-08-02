@@ -1,0 +1,31 @@
+{
+	"name": "redux-observable-signalr-core",
+	"version": "1.0.0",
+	"description": "A library to handle realtime SignalR Core events using redux-observable and rxjs",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Kashkovsky/redux-observable-signalr-core.git"
+	},
+	"author": "Denys Kashkovskyi",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/Kashkovsky/redux-observable-signalr-core/issues"
+	},
+	"homepage": "https://github.com/Kashkovsky/redux-observable-signalr-core#readme",
+	"dependencies": {
+		"@aspnet/signalr": "^1.1.4",
+		"typesafe-actions": "^4.4.2"
+	},
+	"devDependencies": {
+		"@types/node": "^12.6.9",
+		"typescript": "^3.5.3"
+	},
+	"peerDependencies": {
+		"redux": ">=4.0.0",
+		"rxjs": ">=6.0.0",
+		"redux-observable": ">=1.1.0"
+	},
+	"main": "dist/index.js",
+	"typings": "dist/index.d.ts",
+	"files": [ "dist/**/*" ]
+}
