@@ -40,11 +40,9 @@ export class SignalRHub {
     start() {
         if (!this.hasSubscriptions())
             console.warn("No listeners have been setup. You need to setup a listener before starting the connection or you will not receive data.");
-        console.log("Starting websocket connection. Current state", this.connection.state);
         this._primePromise = this.connection
             .start()
             .then(() => {
-            console.log("Connection started");
             this._state$.next(HubConnectionState.Connected);
             this._start$.next();
         })
@@ -53,7 +51,6 @@ export class SignalRHub {
     }
     on(event) {
         const subject = this.getOrCreateSubject(event);
-        console.log("Subscribing to", event, "Connection state", this.connection.state);
         this.connection.on(event, (data) => subject.next(data));
         return subject.asObservable();
     }

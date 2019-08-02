@@ -34,11 +34,7 @@ const beforeStartHub$ = action$ => action$.pipe(filter(isActionOf(signalrHubUnst
     const error$ = hub.error$.pipe(map(error => signalrError({ hubName: action.hubName, url: action.url, error })));
     return merge(start$, state$, error$);
 }));
-const startHub$ = action$ => action$.pipe(filter(isActionOf(startSignalRHub)), map(findHub), mergeMap(hub => {
-    return hub
-        .start()
-        .pipe(map(() => signalrStarted({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY));
-}));
+const startHub$ = action$ => action$.pipe(filter(isActionOf([startSignalRHub, reconnectSignalRHub])), map(findHub), mergeMap(hub => hub.start().pipe(map(() => signalrStarted({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY))));
 export const createReconnect$ = action$ => action$.pipe(filter(isActionOf(signalrDisconnected)), groupBy(action => action.hubName), mergeMap(group => group.pipe(exhaustMapHubToAction(({ action }) => isOnline().pipe(switchMap(online => {
     if (!online) {
         return EMPTY;
