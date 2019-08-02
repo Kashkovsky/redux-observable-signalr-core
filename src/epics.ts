@@ -73,13 +73,11 @@ const beforeStartHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 
 const startHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 	action$.pipe(
-		filter(isActionOf(startSignalRHub)),
+		filter(isActionOf([ startSignalRHub, reconnectSignalRHub ])),
 		map(findHub),
-		mergeMap(hub => {
-			return hub
-				.start()
-				.pipe(map(() => signalrStarted({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY));
-		})
+		mergeMap(hub =>
+			hub.start().pipe(map(() => signalrStarted({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY))
+		)
 	);
 
 export const createReconnect$: Epic<SignalRAction, SignalRAction> = action$ =>
