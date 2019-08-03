@@ -2,6 +2,20 @@ import * as SignalR from "@aspnet/signalr";
 import { Observable, Subject, from } from "rxjs";
 import { HubConnectionState } from "@aspnet/signalr";
 
+export type HubKeyDefinition = {
+	hubName: string;
+	url: string;
+};
+
+export type HubFullDefinition = HubKeyDefinition & {
+	options?: SignalR.IHttpConnectionOptions | undefined;
+};
+
+export interface HubAction {
+	hubName: string;
+	url: string;
+}
+
 export interface SignalRError extends Error {
 	context?: any;
 	transport?: string;

@@ -1,7 +1,7 @@
 import { MonoTypeOperatorFunction, Observable, of } from "rxjs";
-import { HubKeyDefinition, HubAction } from "./models";
+import { HubKeyDefinition, HubAction } from "./signalRHub";
 import { filter, map, mergeMap, switchMap, exhaustMap } from "rxjs/operators";
-import { findHub, ISignalRHub } from "./SignalRHub";
+import { findHub, ISignalRHub } from "./signalRHub";
 import { hubNotFound } from "./actions";
 
 export function ofHub<T extends HubAction>(hubName: string, url: string): MonoTypeOperatorFunction<T>;

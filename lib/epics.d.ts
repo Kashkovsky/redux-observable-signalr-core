@@ -6,87 +6,87 @@ declare const _default: Epic<{
     hubName: string;
     url: string;
     options?: import("@aspnet/signalr/dist/esm/IHttpConnectionOptions").IHttpConnectionOptions;
-    type: "@signalr/createHub";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/hubUnstarted";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/startHub";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/reconnectHub";
-} | {
-    hubName: string;
-    url: string;
-    error: any;
-    type: "@signalr/hubFailedToStart";
-} | {
-    hubName: string;
-    url: string;
-    type: "@signalr/connected";
-} | {
-    hubName: string;
-    url: string;
-    type: "@signalr/started";
-} | {
-    hubName: string;
-    url: string;
-    type: "@signalr/disconnected";
+    type: string;
 } | {
     hubName: string;
     url: string;
     error: any;
-    type: "@signalr/error";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/hubNotFound";
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    error: any;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    type: string;
 }, {
     hubName: string;
     url: string;
     options?: import("@aspnet/signalr/dist/esm/IHttpConnectionOptions").IHttpConnectionOptions;
-    type: "@signalr/createHub";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/hubUnstarted";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/startHub";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/reconnectHub";
-} | {
-    hubName: string;
-    url: string;
-    error: any;
-    type: "@signalr/hubFailedToStart";
-} | {
-    hubName: string;
-    url: string;
-    type: "@signalr/connected";
-} | {
-    hubName: string;
-    url: string;
-    type: "@signalr/started";
-} | {
-    hubName: string;
-    url: string;
-    type: "@signalr/disconnected";
+    type: string;
 } | {
     hubName: string;
     url: string;
     error: any;
-    type: "@signalr/error";
+    type: string;
 } | {
     hubName: string;
     url: string;
-    type: "@signalr/hubNotFound";
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    error: any;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
+    type: string;
 }, any, any>[];
 export default _default;

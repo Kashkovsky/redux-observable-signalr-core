@@ -1,5 +1,17 @@
 import { ActionType } from "typesafe-actions";
 import { IHttpConnectionOptions } from "@aspnet/signalr";
+export declare const actionTypes: {
+    SIGNALR_HUB_CREATE: string;
+    SIGNALR_HUB_CREATED: string;
+    SIGNALR_HUB_START: string;
+    SIGNALR_HUB_RECONNECT: string;
+    SIGNALR_HUB_FAILED_TO_START: string;
+    SUGNARR_HUB_NOTFOUND: string;
+    SIGNALR_CONNECTED: string;
+    SIGNALR_STARTED: string;
+    SIGNALR_DISCONNECTED: string;
+    SIGNALR_ERROR: string;
+};
 export declare const createSignalRHub: (props: {
     hubName: string;
     url: string;
@@ -8,16 +20,15 @@ export declare const createSignalRHub: (props: {
     hubName: string;
     url: string;
     options?: IHttpConnectionOptions;
-    type: "@signalr/createHub";
+    type: string;
 };
-export declare const SIGNALR_HUB_UNSTARTED = "@signalr/hubUnstarted";
 export declare const signalrHubUnstarted: (props: {
     hubName: string;
     url: string;
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/hubUnstarted";
+    type: string;
 };
 export declare const startSignalRHub: (props: {
     hubName: string;
@@ -25,7 +36,7 @@ export declare const startSignalRHub: (props: {
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/startHub";
+    type: string;
 };
 export declare const reconnectSignalRHub: (props: {
     hubName: string;
@@ -33,9 +44,8 @@ export declare const reconnectSignalRHub: (props: {
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/reconnectHub";
+    type: string;
 };
-export declare const SIGNALR_HUB_FAILED_TO_START = "@signalr/hubFailedToStart";
 export declare const signalrHubFailedToStart: (props: {
     hubName: string;
     url: string;
@@ -44,36 +54,32 @@ export declare const signalrHubFailedToStart: (props: {
     hubName: string;
     url: string;
     error: any;
-    type: "@signalr/hubFailedToStart";
+    type: string;
 };
-export declare const SIGNALR_CONNECTED = "@signalr/connected";
 export declare const signalrConnected: (props: {
     hubName: string;
     url: string;
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/connected";
+    type: string;
 };
-export declare const SIGNALR_STARTED = "@signalr/started";
 export declare const signalrStarted: (props: {
     hubName: string;
     url: string;
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/started";
+    type: string;
 };
-export declare const SIGNALR_DISCONNECTED = "@signalr/disconnected";
 export declare const signalrDisconnected: (props: {
     hubName: string;
     url: string;
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/disconnected";
+    type: string;
 };
-export declare const SIGNALR_ERROR = "@signalr/error";
 export declare const signalrError: (props: {
     hubName: string;
     url: string;
@@ -82,7 +88,7 @@ export declare const signalrError: (props: {
     hubName: string;
     url: string;
     error: any;
-    type: "@signalr/error";
+    type: string;
 };
 export declare const hubNotFound: (props: {
     hubName: string;
@@ -90,7 +96,7 @@ export declare const hubNotFound: (props: {
 }) => {
     hubName: string;
     url: string;
-    type: "@signalr/hubNotFound";
+    type: string;
 };
 declare const signalRAction: {
     createSignalRHub: (props: {
@@ -101,7 +107,7 @@ declare const signalRAction: {
         hubName: string;
         url: string;
         options?: IHttpConnectionOptions;
-        type: "@signalr/createHub";
+        type: string;
     };
     signalrHubUnstarted: (props: {
         hubName: string;
@@ -109,7 +115,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/hubUnstarted";
+        type: string;
     };
     startSignalRHub: (props: {
         hubName: string;
@@ -117,7 +123,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/startHub";
+        type: string;
     };
     reconnectSignalRHub: (props: {
         hubName: string;
@@ -125,7 +131,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/reconnectHub";
+        type: string;
     };
     signalrHubFailedToStart: (props: {
         hubName: string;
@@ -135,7 +141,7 @@ declare const signalRAction: {
         hubName: string;
         url: string;
         error: any;
-        type: "@signalr/hubFailedToStart";
+        type: string;
     };
     signalrConnected: (props: {
         hubName: string;
@@ -143,7 +149,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/connected";
+        type: string;
     };
     signalrDisconnected: (props: {
         hubName: string;
@@ -151,7 +157,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/disconnected";
+        type: string;
     };
     signalrError: (props: {
         hubName: string;
@@ -161,7 +167,7 @@ declare const signalRAction: {
         hubName: string;
         url: string;
         error: any;
-        type: "@signalr/error";
+        type: string;
     };
     hubNotFound: (props: {
         hubName: string;
@@ -169,7 +175,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/hubNotFound";
+        type: string;
     };
     signalrStarted: (props: {
         hubName: string;
@@ -177,7 +183,7 @@ declare const signalRAction: {
     }) => {
         hubName: string;
         url: string;
-        type: "@signalr/started";
+        type: string;
     };
 };
 export declare type SignalRAction = ActionType<typeof signalRAction>;

@@ -1,62 +1,69 @@
 import { createCustomAction, ActionType } from "typesafe-actions";
 import { IHttpConnectionOptions } from "@aspnet/signalr";
 
+export const actionTypes = {
+	SIGNALR_HUB_CREATE: "@signalr/createHub",
+	SIGNALR_HUB_CREATED: "@signalr/hubCreated",
+	SIGNALR_HUB_START: "@signalr/startHub",
+	SIGNALR_HUB_RECONNECT: "@signalr/reconnectHub",
+	SIGNALR_HUB_FAILED_TO_START: "@signalr/hubFailedToStart",
+	SUGNARR_HUB_NOTFOUND: "@signalr/hubNotFound",
+	SIGNALR_CONNECTED: "@signalr/connected",
+	SIGNALR_STARTED: "@signalr/started",
+	SIGNALR_DISCONNECTED: "@signalr/disconnected",
+	SIGNALR_ERROR: "@signalr/error"
+};
+
 export const createSignalRHub = createCustomAction(
-	"@signalr/createHub",
+	actionTypes.SIGNALR_HUB_CREATE,
 	type => (props: { hubName: string; url: string; options?: IHttpConnectionOptions | undefined }) => ({
 		type,
 		...props
 	})
 );
 
-export const SIGNALR_HUB_UNSTARTED = "@signalr/hubUnstarted";
 export const signalrHubUnstarted = createCustomAction(
-	SIGNALR_HUB_UNSTARTED,
+	actionTypes.SIGNALR_HUB_CREATED,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
 export const startSignalRHub = createCustomAction(
-	"@signalr/startHub",
+	actionTypes.SIGNALR_HUB_START,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
 export const reconnectSignalRHub = createCustomAction(
-	"@signalr/reconnectHub",
+	actionTypes.SIGNALR_HUB_RECONNECT,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
-export const SIGNALR_HUB_FAILED_TO_START = "@signalr/hubFailedToStart";
 export const signalrHubFailedToStart = createCustomAction(
-	SIGNALR_HUB_FAILED_TO_START,
+	actionTypes.SIGNALR_HUB_FAILED_TO_START,
 	type => (props: { hubName: string; url: string; error: any }) => ({ type, ...props })
 );
 
-export const SIGNALR_CONNECTED = "@signalr/connected";
 export const signalrConnected = createCustomAction(
-	SIGNALR_CONNECTED,
+	actionTypes.SIGNALR_CONNECTED,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
-export const SIGNALR_STARTED = "@signalr/started";
 export const signalrStarted = createCustomAction(
-	SIGNALR_STARTED,
+	actionTypes.SIGNALR_STARTED,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
-export const SIGNALR_DISCONNECTED = "@signalr/disconnected";
 export const signalrDisconnected = createCustomAction(
-	SIGNALR_DISCONNECTED,
+	actionTypes.SIGNALR_DISCONNECTED,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
-export const SIGNALR_ERROR = "@signalr/error";
 export const signalrError = createCustomAction(
-	SIGNALR_ERROR,
+	actionTypes.SIGNALR_ERROR,
 	type => (props: { hubName: string; url: string; error: any }) => ({ type, ...props })
 );
 
 export const hubNotFound = createCustomAction(
-	"@signalr/hubNotFound",
+	actionTypes.SUGNARR_HUB_NOTFOUND,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
@@ -72,4 +79,5 @@ const signalRAction = {
 	hubNotFound,
 	signalrStarted
 };
+
 export type SignalRAction = ActionType<typeof signalRAction>;

@@ -28,7 +28,7 @@ const epics = combineEpics(
 First, you will start the application by dispatching the creation of one Hub.
 
 ```ts
-import { createSignalRHub } from "redux-observable-signalr-core";
+import { createSignalRHub } from "redux-observable-signalr-core/lib/actions";
 
 // TODO : your hub definition
 const hub = {
@@ -42,7 +42,8 @@ store.dispatch(createSignalRHub(hub));
 Then you will create an Epic to start listening to events before starting the Hub.
 
 ```ts
-import { signalrHubUnstarted, startSignalRHub, mergeMapHubToAction } from "redux-observable-signalr-core";
+import { signalrHubUnstarted, startSignalRHub } from "redux-observable-signalr-core";
+import { mergeMapHubToAction } from "redux-observable-signalr-core/lib/operators";
 
 const listenNotification$: Epic<Action, Action, IRootState> = action$ =>
 	action$.pipe(
@@ -69,6 +70,9 @@ const listenNotification$: Epic<Action, Action, IRootState> = action$ =>
 You can also send events at anytime.
 
 ```ts
+import { findHub } from "redux-observable-signalr-core/lib/signalRHub";
+import { hubNotFound } from "redux-observable-signalr-core/lib/actions";
+
 const sendNotification$: Epic<Action, Action, IRootState> = action$ =>
 	action$.pipe(
 		filter(isActionOf(actions.sendNotification)),

@@ -25,9 +25,7 @@
 		"rxjs": ">=6.0.0",
 		"redux-observable": ">=1.1.0"
 	},
-	"main": "dist/index.js",
-	"typings": "dist/index.d.ts",
-	"files": [
-		"dist/**/*"
-	]
+	"main": "lib/index.js",
+	"typings": "lib/index.d.ts",
+	"files": [ "lib/**/*" ]
 }

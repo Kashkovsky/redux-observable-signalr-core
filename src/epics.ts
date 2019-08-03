@@ -2,7 +2,7 @@ import { Epic } from "redux-observable";
 import {
 	SignalRAction,
 	createSignalRHub,
-	signalrHubUnstarted,
+	signalrHubUnstarted as signalrHubCreated,
 	signalrHubFailedToStart,
 	signalrConnected,
 	signalrDisconnected,
@@ -13,7 +13,7 @@ import {
 } from "./actions";
 import { isActionOf } from "typesafe-actions";
 import { filter, mergeMap, catchError, map, startWith, groupBy, takeUntil, switchMap } from "rxjs/operators";
-import { createHub, findHub } from "./SignalRHub";
+import { createHub, findHub } from "./signalRHub";
 import { of, EMPTY, merge, fromEvent, timer } from "rxjs";
 import { HubConnectionState } from "@aspnet/signalr";
 import { exhaustMapHubToAction, ofHub } from "./operators";
@@ -31,13 +31,13 @@ const createHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 				return EMPTY;
 			}
 
-			return of(signalrHubUnstarted({ hubName: hub.hubName, url: hub.url }));
+			return of(signalrHubCreated({ hubName: hub.hubName, url: hub.url }));
 		})
 	);
 
 const beforeStartHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 	action$.pipe(
-		filter(isActionOf(signalrHubUnstarted)),
+		filter(isActionOf(signalrHubCreated)),
 		mergeMap(action => {
 			const hub = findHub(action);
 

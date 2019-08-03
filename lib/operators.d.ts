@@ -1,6 +1,6 @@
 import { MonoTypeOperatorFunction, Observable } from "rxjs";
-import { HubKeyDefinition, HubAction } from "./models";
-import { ISignalRHub } from "./SignalRHub";
+import { HubKeyDefinition, HubAction } from "./signalRHub";
+import { ISignalRHub } from "./signalRHub";
 export declare function ofHub<T extends HubAction>(hubName: string, url: string): MonoTypeOperatorFunction<T>;
 export declare function ofHub<T extends HubAction>({ hubName, url }: HubKeyDefinition): MonoTypeOperatorFunction<T>;
 export declare const mapToHub: () => import("rxjs/internal/types").OperatorFunction<{
@@ -15,16 +15,16 @@ declare type ObservableMapHubToActionFunc<T> = (input: ObservableMapHubToActionI
 export declare const mergeMapHubToAction: <T>(func: ObservableMapHubToActionFunc<T>) => import("rxjs/internal/types").OperatorFunction<HubAction, {
     hubName: string;
     url: string;
-    type: "@signalr/hubNotFound";
+    type: string;
 } | T>;
 export declare const switchMapHubToAction: <T>(func: ObservableMapHubToActionFunc<T>) => import("rxjs/internal/types").OperatorFunction<HubAction, {
     hubName: string;
     url: string;
-    type: "@signalr/hubNotFound";
+    type: string;
 } | T>;
 export declare const exhaustMapHubToAction: <T>(func: ObservableMapHubToActionFunc<T>) => import("rxjs/internal/types").OperatorFunction<HubAction, {
     hubName: string;
     url: string;
-    type: "@signalr/hubNotFound";
+    type: string;
 } | T>;
 export {};
