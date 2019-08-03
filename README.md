@@ -42,7 +42,7 @@ store.dispatch(createSignalRHub(hub));
 Then you will create an Epic to start listening to events before starting the Hub.
 
 ```ts
-import { signalrHubUnstarted, startSignalRHub } from "redux-observable-signalr-core";
+import { signalrHubUnstarted, startSignalRHub } from "redux-observable-signalr-core/lib/actions";
 import { mergeMapHubToAction } from "redux-observable-signalr-core/lib/operators";
 
 const listenNotification$: Epic<Action, Action, IRootState> = action$ =>
