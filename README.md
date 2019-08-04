@@ -1,4 +1,5 @@
 # redux-observable-signalr-core
+[![npm](https://img.shields.io/npm/dm/redux-observable-signalr-core.svg)]()
 [![npm version](https://badge.fury.io/js/redux-observable-signalr-core.svg)](https://badge.fury.io/js/redux-observable-signalr-core)
 
 
