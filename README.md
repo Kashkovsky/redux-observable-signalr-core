@@ -1,5 +1,5 @@
 # redux-observable-signalr-core
-[![npm](https://img.shields.io/npm/dm/redux-observable-signalr-core.svg)]()
+[![npm version](https://badge.fury.io/js/redux-observable-signalr-core.svg)](https://badge.fury.io/js/redux-observable-signalr-core)
 
 
 A library to handle realtime SignalR (.NET Core) events using redux, rxjs and redux-observable.
