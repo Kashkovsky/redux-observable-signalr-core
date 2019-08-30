@@ -1,6 +1,6 @@
 {
 	"name": "redux-observable-signalr-core",
-	"version": "1.1.3",
+	"version": "1.2.0",
 	"description": "A library to handle realtime SignalR Core events using redux-observable and rxjs",
 	"repository": {
 		"type": "git",
