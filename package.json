@@ -12,10 +12,6 @@
 		"url": "https://github.com/Kashkovsky/redux-observable-signalr-core/issues"
 	},
 	"homepage": "https://github.com/Kashkovsky/redux-observable-signalr-core#readme",
-	"dependencies": {
-		"@aspnet/signalr": "^1.1.4",
-		"typesafe-actions": "^4.4.2"
-	},
 	"devDependencies": {
 		"@types/node": "^12.6.9",
 		"typescript": "^3.5.3"
@@ -27,7 +23,5 @@
 	},
 	"main": "lib/index.js",
 	"typings": "lib/index.d.ts",
-	"files": [
-		"lib/**/*"
-	]
+	"files": [ "lib/**/*" ]
 }

@@ -4,11 +4,13 @@ export declare const actionTypes: {
     SIGNALR_HUB_CREATE: string;
     SIGNALR_HUB_CREATED: string;
     SIGNALR_HUB_START: string;
+    SIGNALR_HUB_STOP: string;
     SIGNALR_HUB_RECONNECT: string;
     SIGNALR_HUB_FAILED_TO_START: string;
     SUGNARR_HUB_NOTFOUND: string;
     SIGNALR_CONNECTED: string;
     SIGNALR_STARTED: string;
+    SIGNALR_STOPPED: string;
     SIGNALR_DISCONNECTED: string;
     SIGNALR_ERROR: string;
 };
@@ -31,6 +33,14 @@ export declare const signalrHubUnstarted: (props: {
     type: string;
 };
 export declare const startSignalRHub: (props: {
+    hubName: string;
+    url: string;
+}) => {
+    hubName: string;
+    url: string;
+    type: string;
+};
+export declare const stopSignalRHub: (props: {
     hubName: string;
     url: string;
 }) => {
@@ -65,6 +75,14 @@ export declare const signalrConnected: (props: {
     type: string;
 };
 export declare const signalrStarted: (props: {
+    hubName: string;
+    url: string;
+}) => {
+    hubName: string;
+    url: string;
+    type: string;
+};
+export declare const signalrStopped: (props: {
     hubName: string;
     url: string;
 }) => {
@@ -118,6 +136,14 @@ declare const signalRAction: {
         type: string;
     };
     startSignalRHub: (props: {
+        hubName: string;
+        url: string;
+    }) => {
+        hubName: string;
+        url: string;
+        type: string;
+    };
+    stopSignalRHub: (props: {
         hubName: string;
         url: string;
     }) => {

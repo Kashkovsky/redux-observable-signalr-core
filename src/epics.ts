@@ -9,7 +9,9 @@ import {
 	signalrError,
 	reconnectSignalRHub,
 	startSignalRHub,
-	signalrStarted
+	signalrStarted,
+	stopSignalRHub,
+	signalrStopped
 } from "./actions";
 import { isActionOf } from "typesafe-actions";
 import { filter, mergeMap, catchError, map, startWith, groupBy, takeUntil, switchMap } from "rxjs/operators";
@@ -73,10 +75,19 @@ const beforeStartHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 
 const startHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 	action$.pipe(
-		filter(isActionOf([ startSignalRHub, reconnectSignalRHub ])),
+		filter(isActionOf([startSignalRHub, reconnectSignalRHub])),
 		map(findHub),
 		mergeMap(hub =>
 			hub.start().pipe(map(() => signalrStarted({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY))
+		)
+	);
+
+const stopHub$: Epic<SignalRAction, SignalRAction> = action$ =>
+	action$.pipe(
+		filter(isActionOf(stopSignalRHub)),
+		map(findHub),
+		mergeMap(hub =>
+			hub.stop().pipe(map(() => signalrStopped({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY))
 		)
 	);
 
@@ -102,4 +113,4 @@ export const createReconnect$: Epic<SignalRAction, SignalRAction> = action$ =>
 		)
 	);
 
-export default [ createHub$, beforeStartHub$, startHub$, createReconnect$ ];
+export default [createHub$, beforeStartHub$, startHub$, stopHub$, createReconnect$];

@@ -5,11 +5,13 @@ export const actionTypes = {
 	SIGNALR_HUB_CREATE: "@signalr/createHub",
 	SIGNALR_HUB_CREATED: "@signalr/hubCreated",
 	SIGNALR_HUB_START: "@signalr/startHub",
+	SIGNALR_HUB_STOP: "@signalr/stopHub",
 	SIGNALR_HUB_RECONNECT: "@signalr/reconnectHub",
 	SIGNALR_HUB_FAILED_TO_START: "@signalr/hubFailedToStart",
 	SUGNARR_HUB_NOTFOUND: "@signalr/hubNotFound",
 	SIGNALR_CONNECTED: "@signalr/connected",
 	SIGNALR_STARTED: "@signalr/started",
+	SIGNALR_STOPPED: "@signalr/stopped",
 	SIGNALR_DISCONNECTED: "@signalr/disconnected",
 	SIGNALR_ERROR: "@signalr/error"
 };
@@ -29,6 +31,11 @@ export const signalrHubUnstarted = createCustomAction(
 
 export const startSignalRHub = createCustomAction(
 	actionTypes.SIGNALR_HUB_START,
+	type => (props: { hubName: string; url: string }) => ({ type, ...props })
+);
+
+export const stopSignalRHub = createCustomAction(
+	actionTypes.SIGNALR_HUB_STOP,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
@@ -52,6 +59,11 @@ export const signalrStarted = createCustomAction(
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
 );
 
+export const signalrStopped = createCustomAction(
+	actionTypes.SIGNALR_STOPPED,
+	type => (props: { hubName: string; url: string }) => ({ type, ...props })
+);
+
 export const signalrDisconnected = createCustomAction(
 	actionTypes.SIGNALR_DISCONNECTED,
 	type => (props: { hubName: string; url: string }) => ({ type, ...props })
@@ -71,6 +83,7 @@ const signalRAction = {
 	createSignalRHub,
 	signalrHubUnstarted,
 	startSignalRHub,
+	stopSignalRHub,
 	reconnectSignalRHub,
 	signalrHubFailedToStart,
 	signalrConnected,

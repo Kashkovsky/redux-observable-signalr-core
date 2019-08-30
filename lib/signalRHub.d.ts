@@ -22,11 +22,13 @@ export interface ISignalRHub {
     url: string;
     options: SignalR.IHttpConnectionOptions | undefined;
     start$: Observable<void>;
+    stop$: Observable<void>;
     state$: Observable<HubConnectionState>;
     error$: Observable<Error | undefined>;
     start(): Observable<void>;
+    stop(): Observable<void>;
     on<T>(eventName: string): Observable<T>;
-    off(eventName: string): ISignalRHub;
+    off(eventName: string): void;
     send(methodName: string, ...args: any[]): Observable<any>;
     hasSubscriptions(): boolean;
 }
@@ -36,6 +38,7 @@ export declare class SignalRHub implements ISignalRHub {
     options: SignalR.IHttpConnectionOptions;
     private _connection;
     private _start$;
+    private _stop$;
     private _state$;
     private _error$;
     private _subjects;
@@ -45,11 +48,13 @@ export declare class SignalRHub implements ISignalRHub {
     readonly hubName: string;
     readonly url: string;
     readonly start$: Observable<void>;
+    readonly stop$: Observable<void>;
     readonly state$: Observable<HubConnectionState>;
     readonly error$: Observable<Error>;
     start(): Observable<void>;
+    stop(): Observable<void>;
     on<T>(event: string): Observable<T>;
-    off(event: string): this;
+    off(event: string): void;
     send(method: string, ...args: any[]): Observable<any>;
     hasSubscriptions(): boolean;
     private _send;

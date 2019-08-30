@@ -22,6 +22,10 @@ declare const _default: Epic<{
 } | {
     hubName: string;
     url: string;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
     error: any;
     type: string;
 } | {
@@ -49,6 +53,10 @@ declare const _default: Epic<{
     hubName: string;
     url: string;
     options?: import("@aspnet/signalr/dist/esm/IHttpConnectionOptions").IHttpConnectionOptions;
+    type: string;
+} | {
+    hubName: string;
+    url: string;
     type: string;
 } | {
     hubName: string;

@@ -28,12 +28,14 @@ export interface ISignalRHub {
 	options: SignalR.IHttpConnectionOptions | undefined;
 
 	start$: Observable<void>;
+	stop$: Observable<void>;
 	state$: Observable<HubConnectionState>;
 	error$: Observable<Error | undefined>;
 
 	start(): Observable<void>;
+	stop(): Observable<void>;
 	on<T>(eventName: string): Observable<T>;
-	off(eventName: string): ISignalRHub;
+	off(eventName: string): void;
 	send(methodName: string, ...args: any[]): Observable<any>;
 	hasSubscriptions(): boolean;
 }
@@ -41,6 +43,7 @@ export interface ISignalRHub {
 export class SignalRHub implements ISignalRHub {
 	private _connection: SignalR.HubConnection;
 	private _start$: Subject<void>;
+	private _stop$: Subject<void>;
 	private _state$: Subject<HubConnectionState>;
 	private _error$: Subject<SignalRError>;
 	private _subjects: { [name: string]: Subject<any> };
@@ -49,6 +52,7 @@ export class SignalRHub implements ISignalRHub {
 	constructor(private _hubName: string, private _url: string, public options: SignalR.IHttpConnectionOptions = {}) {
 		this._subjects = {};
 		this._start$ = new Subject<void>();
+		this._stop$ = new Subject<void>();
 		this._state$ = new Subject<HubConnectionState>();
 		this._error$ = new Subject<SignalRError>();
 	}
@@ -67,6 +71,10 @@ export class SignalRHub implements ISignalRHub {
 
 	get start$(): Observable<void> {
 		return this._start$.asObservable();
+	}
+
+	get stop$(): Observable<void> {
+		return this._stop$.asObservable();
 	}
 
 	get state$(): Observable<HubConnectionState> {
@@ -93,6 +101,17 @@ export class SignalRHub implements ISignalRHub {
 		return this._start$.asObservable();
 	}
 
+	stop() {
+		this._primePromise = this.connection
+			.stop()
+			.then(() => {
+				this._state$.next(HubConnectionState.Disconnected);
+				this._stop$.next();
+			})
+			.catch(error => this._stop$.error(error));
+		return this._stop$.asObservable();
+	}
+
 	on<T>(event: string): Observable<T> {
 		const subject = this.getOrCreateSubject<T>(event);
 		this.connection.on(event, (data: T) => subject.next(data));
@@ -101,7 +120,6 @@ export class SignalRHub implements ISignalRHub {
 
 	off(event: string) {
 		this.connection.off(event);
-		return this;
 	}
 
 	send(method: string, ...args: any[]) {
