@@ -153,7 +153,9 @@ export class SignalRHub implements ISignalRHub {
 		const connection = new SignalR.HubConnectionBuilder().withUrl(hub, this.options).build();
 		connection.onclose(error => {
 			this._state$.next(HubConnectionState.Disconnected);
-			this._error$.next(error);
+			if (error) {
+				this._error$.next(error);
+			}
 		});
 		return connection;
 	}

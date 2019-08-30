@@ -58,7 +58,6 @@ const beforeStartHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 						return of(signalrConnected({ hubName: action.hubName, url: action.url }));
 					}
 					if (state === HubConnectionState.Disconnected) {
-						console.log("state change", state);
 						return of(signalrDisconnected({ hubName: action.hubName, url: action.url }));
 					}
 					return EMPTY;
@@ -94,7 +93,7 @@ const stopHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 
 export const createReconnect$: Epic<SignalRAction, SignalRAction> = action$ =>
 	action$.pipe(
-		filter(isActionOf(signalrDisconnected)),
+		filter(isActionOf(signalrError)),
 		groupBy(action => action.hubName),
 		mergeMap(group =>
 			group.pipe(
