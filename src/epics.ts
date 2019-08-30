@@ -86,6 +86,7 @@ const stopHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 	action$.pipe(
 		filter(isActionOf(stopSignalRHub)),
 		map(findHub),
+		filter(x => !!x),
 		mergeMap(hub =>
 			hub.stop().pipe(map(() => signalrStopped({ hubName: hub.hubName, url: hub.url })), catchError(() => EMPTY))
 		)
