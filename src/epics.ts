@@ -28,7 +28,7 @@ const createHub$: Epic<SignalRAction, SignalRAction> = action$ =>
 	action$.pipe(
 		filter(isActionOf(createSignalRHub)),
 		mergeMap(action => {
-			const hub = createHub(action.hubName, action.url, action.options);
+			const hub = createHub(action.hubName, action.url, action.autoReconnect === undefined || action.autoReconnect, action.options);
 			if (!hub) {
 				return EMPTY;
 			}
@@ -97,8 +97,9 @@ export const createReconnect$: Epic<SignalRAction, SignalRAction> = action$ =>
 		groupBy(action => action.hubName),
 		mergeMap(group =>
 			group.pipe(
-				exhaustMapHubToAction(({ action }) =>
+				exhaustMapHubToAction(({ action, hub }) =>
 					isOnline().pipe(
+						filter(() => hub.autoReconnect),
 						switchMap(online => {
 							if (!online) {
 								return EMPTY;

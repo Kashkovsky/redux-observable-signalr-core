@@ -18,10 +18,12 @@ export declare const createSignalRHub: (props: {
     hubName: string;
     url: string;
     options?: IHttpConnectionOptions;
+    autoReconnect: boolean;
 }) => {
     hubName: string;
     url: string;
     options?: IHttpConnectionOptions;
+    autoReconnect: boolean;
     type: string;
 };
 export declare const signalrHubUnstarted: (props: {
@@ -121,10 +123,12 @@ declare const signalRAction: {
         hubName: string;
         url: string;
         options?: IHttpConnectionOptions;
+        autoReconnect: boolean;
     }) => {
         hubName: string;
         url: string;
         options?: IHttpConnectionOptions;
+        autoReconnect: boolean;
         type: string;
     };
     signalrHubUnstarted: (props: {

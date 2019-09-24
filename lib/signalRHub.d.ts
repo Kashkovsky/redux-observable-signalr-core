@@ -21,6 +21,7 @@ export interface ISignalRHub {
     hubName: string;
     url: string;
     options: SignalR.IHttpConnectionOptions | undefined;
+    autoReconnect: boolean;
     start$: Observable<void>;
     stop$: Observable<void>;
     state$: Observable<HubConnectionState>;
@@ -35,6 +36,7 @@ export interface ISignalRHub {
 export declare class SignalRHub implements ISignalRHub {
     private _hubName;
     private _url;
+    autoReconnect: boolean;
     options: SignalR.IHttpConnectionOptions;
     private _connection;
     private _start$;
@@ -43,7 +45,7 @@ export declare class SignalRHub implements ISignalRHub {
     private _error$;
     private _subjects;
     private _primePromise;
-    constructor(_hubName: string, _url: string, options?: SignalR.IHttpConnectionOptions);
+    constructor(_hubName: string, _url: string, autoReconnect: boolean, options?: SignalR.IHttpConnectionOptions);
     readonly connection: SignalR.HubConnection;
     readonly hubName: string;
     readonly url: string;
@@ -66,4 +68,4 @@ export declare function findHub({ hubName, url }: {
     hubName: string;
     url: string;
 }): ISignalRHub | undefined;
-export declare const createHub: (hubName: string, url: string, options?: SignalR.IHttpConnectionOptions) => ISignalRHub;
+export declare const createHub: (hubName: string, url: string, autoReconnect?: boolean, options?: SignalR.IHttpConnectionOptions) => ISignalRHub;

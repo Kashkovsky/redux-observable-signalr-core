@@ -18,7 +18,7 @@ export const actionTypes = {
 
 export const createSignalRHub = createCustomAction(
 	actionTypes.SIGNALR_HUB_CREATE,
-	type => (props: { hubName: string; url: string; options?: IHttpConnectionOptions | undefined }) => ({
+	type => (props: { hubName: string; url: string; options?: IHttpConnectionOptions | undefined, autoReconnect: boolean }) => ({
 		type,
 		...props
 	})

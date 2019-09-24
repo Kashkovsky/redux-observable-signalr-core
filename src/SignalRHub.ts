@@ -26,7 +26,8 @@ export interface ISignalRHub {
 	hubName: string;
 	url: string;
 	options: SignalR.IHttpConnectionOptions | undefined;
-
+	autoReconnect: boolean;
+	
 	start$: Observable<void>;
 	stop$: Observable<void>;
 	state$: Observable<HubConnectionState>;
@@ -49,7 +50,7 @@ export class SignalRHub implements ISignalRHub {
 	private _subjects: { [name: string]: Subject<any> };
 	private _primePromise: Promise<any>;
 
-	constructor(private _hubName: string, private _url: string, public options: SignalR.IHttpConnectionOptions = {}) {
+	constructor(private _hubName: string, private _url: string, public autoReconnect: boolean, public options: SignalR.IHttpConnectionOptions = {}) {
 		this._subjects = {};
 		this._start$ = new Subject<void>();
 		this._stop$ = new Subject<void>();
@@ -178,9 +179,10 @@ export function findHub(
 export const createHub = (
 	hubName: string,
 	url: string,
+	autoReconnect?: boolean,
 	options: SignalR.IHttpConnectionOptions = {}
 ): ISignalRHub | undefined => {
-	const hub = new SignalRHub(hubName, url, options);
+	const hub = new SignalRHub(hubName, url, autoReconnect, options);
 	hubs.push(hub);
 	return hub;
 };

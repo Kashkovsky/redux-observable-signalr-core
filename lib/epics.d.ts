@@ -6,6 +6,7 @@ declare const _default: Epic<{
     hubName: string;
     url: string;
     options?: import("@aspnet/signalr/dist/esm/IHttpConnectionOptions").IHttpConnectionOptions;
+    autoReconnect: boolean;
     type: string;
 } | {
     hubName: string;
@@ -53,6 +54,7 @@ declare const _default: Epic<{
     hubName: string;
     url: string;
     options?: import("@aspnet/signalr/dist/esm/IHttpConnectionOptions").IHttpConnectionOptions;
+    autoReconnect: boolean;
     type: string;
 } | {
     hubName: string;
